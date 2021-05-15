@@ -1,4 +1,4 @@
-package cs.foc.factory;
+package cs.sdp.factory;
 
 public class ConcreteCreatorC extends AbstractCreator {
     @Override

@@ -1,4 +1,4 @@
-package cs.foc.factory;
+package cs.sdp.factory;
 
 public class ConcreteProductA implements AbstractProduct{
     @Override

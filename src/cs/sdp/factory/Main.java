@@ -6,12 +6,20 @@ public class Main {
         String factoryType = args[0];
         AbstractProduct product;
 
-        AbstractCreator creator = switch (factoryType) {
-            case "A" -> new ConcreteCreatorA();
-            case "B" -> new ConcreteCreatorB();
-            case "C" -> new ConcreteCreatorC();
-            default -> throw new RuntimeException();
-        };
+        AbstractCreator creator;
+        switch (factoryType) {
+            case "A":
+                creator = new ConcreteCreatorA();
+                break;
+            case "B":
+                creator = new ConcreteCreatorB();
+                break;
+            case "C":
+                creator = new ConcreteCreatorC();
+                break;
+            default:
+                throw new RuntimeException();
+        }
 
         product = creator.createProduct();
         product.doesThing();

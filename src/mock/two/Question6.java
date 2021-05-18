@@ -10,27 +10,49 @@ public class Question6 {
 
 class IntTree {
     private final IntTreeNode overallRoot = buildTreeAndReturnRoot();
-    private StringBuilder out = new StringBuilder();
 
-    public String toString(){
-        traverse(overallRoot);
-        return out.toString();
+    @Override
+    public String toString() {
+        StringBuilder description = new StringBuilder();
+        processNode(overallRoot, description);
+        return description.toString();
     }
 
-    private void traverse(IntTreeNode node){
-        if (node != null){
-            visit(node);
-            traverse(node.left);
-            traverse(node.right);
+    private void processNode(IntTreeNode node, StringBuilder description) {
+        description.append("(");
+        traversal(node, description);
+        description.append(")");
+    }
+
+    private void traversal(IntTreeNode node, StringBuilder description) {
+        description.append(node.data).append(", ");
+
+        if (node.left == null) {
+            description.append("empty, ");
+        }
+        else {
+            if (node.left.isLeaf()) {
+                description.append(node.left.data).append(", ");
+            }
+            else {
+                processNode(node.left, description);
+                description.append(", ");
+            }
+        }
+
+        if (node.right == null) {
+            description.append("empty");
+        }
+        else {
+            if (node.right.isLeaf()) {
+                description.append(node.right.data);
+            }
+            else {
+                processNode(node.right, description);
+            }
         }
     }
 
-    private void visit(IntTreeNode n){
-        String d = Integer.toString(n.data);
-        String l = n.left != null ? Integer.toString(n.left.data) : "empty";
-        String r = n.right != null ? Integer.toString(n.right.data) : "empty";
-        out.append(d + ", " + l + ", " + r);
-    }
 
     private IntTreeNode buildTreeAndReturnRoot(){
         IntTreeNode two = new IntTreeNode(2);
@@ -61,5 +83,9 @@ class IntTreeNode {
 
     IntTreeNode(int data){
         this.data = data;
+    }
+
+    public Boolean isLeaf() {
+        return this.left == null && this.right == null;
     }
 }

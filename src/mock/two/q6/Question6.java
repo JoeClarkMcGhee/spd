@@ -1,4 +1,4 @@
-package mock.two;
+package mock.two.q6;
 
 public class Question6 {
     public static void main(String[] args) {
